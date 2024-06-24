@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Task from "../pages/Task";
+import { API } from "../main";
 
 function Todo() {
   const [todoItem, setTodoItem] = useState([]);
 
   useEffect(() => {
-    const data = fetch("/api/todo/alltask")
+    const data = fetch(`${API}/api/todo/alltask`, {
+      method: "GET",
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((res) => setTodoItem(res))
       .catch((error) =>
